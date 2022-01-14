@@ -149,4 +149,3 @@ Public Sub FindCellsInWorkbook_Successed()
     Assert.AreEqual actual.Count, expect
     Call CloseBook(testBook)
 End Sub
-
