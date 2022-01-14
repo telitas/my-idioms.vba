@@ -12,6 +12,7 @@ Option Private Module
     Private Fakes As Object
 #Else
     Private Assert As Rubberduck.AssertClass
+    '@Ignore VariableNotUsed
     Private Fakes As Rubberduck.FakesProvider
 #End If
 
@@ -35,11 +36,13 @@ Private Sub ModuleCleanup()
 End Sub
 
 '@TestInitialize
+'@Ignore EmptyMethod
 Private Sub TestInitialize()
     'This method runs before every test in the module..
 End Sub
 
 '@TestCleanup
+'@Ignore EmptyMethod
 Private Sub TestCleanup()
     'this method runs after every test in the module.
 End Sub

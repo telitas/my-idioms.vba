@@ -12,6 +12,7 @@ Option Private Module
     Private Fakes As Object
 #Else
     Private Assert As Rubberduck.AssertClass
+    '@Ignore VariableNotUsed
     Private Fakes As Rubberduck.FakesProvider
 #End If
 
