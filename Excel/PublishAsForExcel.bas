@@ -5,19 +5,19 @@ Option Private Module
 Option Explicit
 
 Public Sub PublishAs( _
-    TargetWorkbook As Workbook, _
-    Filename As String, _
-    Optional FileFormat As Variant, _
-    Optional Password As Variant, _
-    Optional WriteResPassword As Variant, _
-    Optional ReadOnlyRecommended As Variant, _
-    Optional CreateBackup As Variant, _
-    Optional AccessMode As XlSaveAsAccessMode, _
-    Optional ConflictResolution As XlSaveConflictResolution, _
-    Optional AddToMru As Variant, _
-    Optional TextCodepage As Variant, _
-    Optional TextVisualLayout As Variant, _
-    Optional Locale As Variant _
+    ByVal TargetWorkbook As Workbook, _
+    ByVal Filename As String, _
+    Optional ByVal FileFormat As Variant, _
+    Optional ByVal Password As Variant, _
+    Optional ByVal WriteResPassword As Variant, _
+    Optional ByVal ReadOnlyRecommended As Variant, _
+    Optional ByVal CreateBackup As Variant, _
+    Optional ByVal AccessMode As XlSaveAsAccessMode, _
+    Optional ByVal ConflictResolution As XlSaveConflictResolution, _
+    Optional ByVal AddToMru As Variant, _
+    Optional ByVal TextCodepage As Variant, _
+    Optional ByVal TextVisualLayout As Variant, _
+    Optional ByVal Locale As Variant _
 )
     Dim fileSystemObject As Object
     Set fileSystemObject = CreateObject("Scripting.FileSystemObject")

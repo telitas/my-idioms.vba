@@ -5,24 +5,24 @@ Option Private Module
 Option Explicit
 
 Public Sub PublishAs( _
-    TargetDocument As Document, _
-    FileName As String, _
-    Optional FileFormat As Variant, _
-    Optional LockComments As Variant, _
-    Optional Password As Variant, _
-    Optional AddToRecentFiles As Variant, _
-    Optional WritePassword As Variant, _
-    Optional ReadOnlyRecommended As Variant, _
-    Optional EmbedTrueTypeFonts As Variant, _
-    Optional SaveNativePictureFormat As Variant, _
-    Optional SaveFormsData As Variant, _
-    Optional SaveAsAOCELetter As Variant, _
-    Optional Encoding As Variant, _
-    Optional InsertLineBreaks As Variant, _
-    Optional AllowSubstitutions As Variant, _
-    Optional LineEnding As Variant, _
-    Optional AddBiDiMarks As Variant, _
-    Optional CompatibilityMode As Variant _
+    ByVal TargetDocument As Document, _
+    ByVal FileName As String, _
+    Optional ByVal FileFormat As Variant, _
+    Optional ByVal LockComments As Variant, _
+    Optional ByVal Password As Variant, _
+    Optional ByVal AddToRecentFiles As Variant, _
+    Optional ByVal WritePassword As Variant, _
+    Optional ByVal ReadOnlyRecommended As Variant, _
+    Optional ByVal EmbedTrueTypeFonts As Variant, _
+    Optional ByVal SaveNativePictureFormat As Variant, _
+    Optional ByVal SaveFormsData As Variant, _
+    Optional ByVal SaveAsAOCELetter As Variant, _
+    Optional ByVal Encoding As Variant, _
+    Optional ByVal InsertLineBreaks As Variant, _
+    Optional ByVal AllowSubstitutions As Variant, _
+    Optional ByVal LineEnding As Variant, _
+    Optional ByVal AddBiDiMarks As Variant, _
+    Optional ByVal CompatibilityMode As Variant _
 )
     Dim fileSystemObject As Object
     Set fileSystemObject = CreateObject("Scripting.FileSystemObject")
