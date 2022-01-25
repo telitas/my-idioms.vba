@@ -1,4 +1,4 @@
-Attribute VB_Name = "PublishAsForExcel"
+Attribute VB_Name = "PublishAsModule"
 ' This file is released under the CC0 1.0 Universal License.
 ' See the LICENSE.txt file or https://creativecommons.org/publicdomain/zero/1.0/ for details.
 Option Private Module

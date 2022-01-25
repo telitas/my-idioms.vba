@@ -1,4 +1,4 @@
-Attribute VB_Name = "PerformanceSettingTest"
+Attribute VB_Name = "PerformanceSettingModuleTest"
 '@IgnoreModule IndexedUnboundDefaultMemberAccess
 Option Explicit
 Option Private Module

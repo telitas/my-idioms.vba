@@ -1,4 +1,4 @@
-Attribute VB_Name = "PublishAsForWordTest"
+Attribute VB_Name = "PublishAsModuleTest"
 Option Explicit
 Option Private Module
 

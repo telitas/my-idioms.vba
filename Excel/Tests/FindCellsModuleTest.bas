@@ -1,4 +1,4 @@
-Attribute VB_Name = "FindCellsTest"
+Attribute VB_Name = "FindCellsModuleTest"
 Option Explicit
 Option Private Module
 
