@@ -17,6 +17,7 @@ Public Function FindCellsInRange( _
 ) As Collection
     Dim listedCells As Collection: Set listedCells = New Collection
     Dim foundCell As Range
+    Dim firstFoundCellAddress As String
     With TargetRange
         Set foundCell = .Find( _
             What:=What, _
@@ -34,7 +35,6 @@ Public Function FindCellsInRange( _
         End If
         
         Call listedCells.Add(foundCell)
-        Dim firstFoundCellAddress As String
         firstFoundCellAddress = foundCell.Address
         Do
             Set foundCell = .FindNext(foundCell)
