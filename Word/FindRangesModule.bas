@@ -7,23 +7,31 @@ Option Explicit
 Public Function FindRanges(ByVal FindCondition As Find) As Collection
     Dim foundRanges As Collection: Set foundRanges = New Collection
     
+    Dim currentSelectionRange As Range
     Dim targetRange As Range
-    Dim startOfRange As Long
-    Dim endOfRange As Long
+    Dim currentRange As Range
     Select Case TypeName(FindCondition.Parent)
         Case "Selection"
+            Set currentSelectionRange = Selection.Range
             Do While FindCondition.Execute
                 Call foundRanges.Add(Selection.Range)
             Loop
+            With Selection
+                .Start = currentSelectionRange.Start
+                .End = currentSelectionRange.End
+            End With
         Case "Range"
             Set targetRange = FindCondition.Parent
-            startOfRange = targetRange.Start
-            endOfRange = targetRange.End
+            Set currentRange = targetRange.Parent.Range(targetRange.Start, targetRange.End)
             Do While FindCondition.Execute
-                If targetRange.Start >= startOfRange And targetRange.End <= endOfRange Then
-                    Call foundRanges.Add(targetRange.Parent.Range(targetRange.Start, targetRange.End))
+                If targetRange.Start >= currentRange.Start And targetRange.End <= currentRange.End Then
+                    Call foundRanges.Add(targetRange.Parent.Range(currentRange.Start, currentRange.End))
                 End If
             Loop
+            With targetRange
+                .Start = currentRange.Start
+                .End = currentRange.End
+            End With
     End Select
     
     Set FindRanges = foundRanges

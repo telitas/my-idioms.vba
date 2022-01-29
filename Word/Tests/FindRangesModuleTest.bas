@@ -64,6 +64,8 @@ Public Sub FindRanges_CorrectCall_Successed()
         Call .Paragraphs(11).Range.InsertBreak(wdSectionBreakContinuous)
     End With
     
+    Dim currentSelectionRange As Range
+    Set currentSelectionRange = Selection.Range
     Dim find_ As Find
     Set find_ = Selection.Find
     With find_
@@ -76,8 +78,15 @@ Public Sub FindRanges_CorrectCall_Successed()
     Dim actual As Collection
     Set actual = FindRanges(find_)
     Assert.AreEqual expectCount, actual.Count
+    Assert.AreEqual Selection.Start, currentSelectionRange.Start
+    Assert.AreEqual Selection.End, currentSelectionRange.End
     
-    Set find_ = testDocument.Content.Find
+    Dim findRange As Range
+    Dim currentRange As Range
+    
+    Set findRange = testDocument.Content
+    Set currentRange = findRange.Parent.Range(findRange.Start, findRange.End)
+    Set find_ = findRange.Find
     With find_
         .ClearFormatting
         .Text = "Paragraph [0-9]{1,2}"
@@ -87,8 +96,12 @@ Public Sub FindRanges_CorrectCall_Successed()
     
     Set actual = FindRanges(find_)
     Assert.AreEqual expectCount, actual.Count
+    Assert.AreEqual findRange.Start, currentRange.Start
+    Assert.AreEqual findRange.End, currentRange.End
     
-    Set find_ = testDocument.Content.Sections(1).Range.Find
+    Set findRange = testDocument.Content.Sections(1).Range
+    Set currentRange = findRange.Parent.Range(findRange.Start, findRange.End)
+    Set find_ = findRange.Find
     With find_
         .ClearFormatting
         .Text = "Paragraph [0-9]{1,2}"
@@ -99,8 +112,12 @@ Public Sub FindRanges_CorrectCall_Successed()
     expectCount = 10
     Set actual = FindRanges(find_)
     Assert.AreEqual expectCount, actual.Count
+    Assert.AreEqual findRange.Start, currentRange.Start
+    Assert.AreEqual findRange.End, currentRange.End
     
-    Set find_ = testDocument.Content.Paragraphs(3).Range.Find
+    Set findRange = testDocument.Content.Paragraphs(3).Range
+    Set currentRange = findRange.Parent.Range(findRange.Start, findRange.End)
+    Set find_ = findRange.Find
     With find_
         .ClearFormatting
         .Text = "Paragraph [0-9]{1,2}"
@@ -111,6 +128,8 @@ Public Sub FindRanges_CorrectCall_Successed()
     expectCount = 1
     Set actual = FindRanges(find_)
     Assert.AreEqual expectCount, actual.Count
+    Assert.AreEqual findRange.Start, currentRange.Start
+    Assert.AreEqual findRange.End, currentRange.End
     
     Call testDocument.Close(wdDoNotSaveChanges)
 End Sub
