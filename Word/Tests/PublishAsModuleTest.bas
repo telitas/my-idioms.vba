@@ -3,7 +3,7 @@ Option Explicit
 Option Private Module
 
 '@TestModule
-'@Folder("Tests")
+'@Folder "Project.Tests"
 
 #Const LateBind = LateBindTests
 

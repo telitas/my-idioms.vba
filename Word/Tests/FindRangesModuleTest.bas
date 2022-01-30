@@ -3,7 +3,7 @@ Option Explicit
 Option Private Module
 
 '@TestModule
-'@Folder("Tests")
+'@Folder "Project.Tests"
 
 #Const LateBind = LateBindTests
 
@@ -15,9 +15,6 @@ Option Private Module
     '@Ignore VariableNotUsed
     Private Fakes As Rubberduck.FakesProvider
 #End If
-
-Private TestDirectory As String
-Private fileSystemObject As Object
 
 '@ModuleInitialize
 Private Sub ModuleInitialize()

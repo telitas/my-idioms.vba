@@ -12,12 +12,6 @@ Private Assert As Object
 '@Ignore VariableNotUsed
 Private Fakes As Object
 
-Private Const DebugObjectSheetName As String = "Sheet1"
-Private Const DummyCodeString As String = _
-"Private Sub Dummy()" & vbCrLf & _
-"End Sub"
-Private Const SkipTaskpaneAppsTest As Boolean = True
-
 '@ModuleInitialize
 Private Sub ModuleInitialize()
     'this method runs once per module.
