@@ -24,3 +24,15 @@ Public Function GetParentWorksheet(ByVal TargetObject As Object) As Worksheet
     End If
     Set GetParentWorksheet = GetParentWorksheet(TargetObject.Parent)
 End Function
+
+Public Function GetParentRange(ByVal TargetObject As Object) As Range
+    If TypeOf TargetObject Is Range Then
+        Set GetParentRange = TargetObject
+        Exit Function
+    ElseIf TypeOf TargetObject Is Worksheet Or _
+            TypeOf TargetObject Is Workbook Or _
+            TypeOf TargetObject Is Application Then
+        Call Err.Raise(5)
+    End If
+    Set GetParentRange = GetParentRange(TargetObject.Parent)
+End Function

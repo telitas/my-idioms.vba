@@ -114,3 +114,59 @@ RESUME_2:
 FINALLY:
     Call testWorkbook.Close(False)
 End Sub
+
+'@TestMethod("GetParentModule")
+Private Sub GetParentRange_CorrectCall_Successed()
+    Dim expect As Range
+    Dim actual As Range
+        
+    Dim testWorkbook As Workbook
+    Set testWorkbook = Workbooks.Add
+    
+    Dim testWorksheet As Worksheet
+    Set testWorksheet = testWorkbook.Worksheets(1)
+    
+    Set expect = testWorksheet.Cells(1, 1)
+    Set actual = GetParentRange(expect)
+    Assert.AreSame expect, actual
+    
+    Dim comment_ As Comment
+    Set comment_ = expect.AddComment
+    Set actual = GetParentRange(comment_)
+    Assert.AreSame expect, actual
+    
+    Call comment_.Delete
+    
+    On Error GoTo ERROR_1
+    Call GetParentRange(Application)
+    Assert.Fail
+    GoTo FINALLY
+    
+ERROR_1:
+    Assert.AreEqual 5&, Err.Number
+    Resume RESUME_1
+RESUME_1:
+    
+    On Error GoTo ERROR_2
+    Call GetParentRange(ThisWorkbook)
+    Assert.Fail
+    GoTo FINALLY
+    
+ERROR_2:
+    Assert.AreEqual 5&, Err.Number
+    Resume RESUME_2
+RESUME_2:
+    
+    On Error GoTo ERROR_3
+    Call GetParentRange(ActiveSheet)
+    Assert.Fail
+    GoTo FINALLY
+    
+ERROR_3:
+    Assert.AreEqual 5&, Err.Number
+    Resume RESUME_3
+RESUME_3:
+   
+FINALLY:
+    Call testWorkbook.Close(False)
+End Sub
