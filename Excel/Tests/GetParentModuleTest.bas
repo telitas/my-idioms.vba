@@ -73,7 +73,7 @@ ERROR_1:
 RESUME_1:
 
 FINALLY:
-    Call testWorkbook.Close
+    Call testWorkbook.Close(False)
 End Sub
 
 '@TestMethod("GetParentModule")
@@ -112,5 +112,5 @@ ERROR_2:
 RESUME_2:
    
 FINALLY:
-    Call testWorkbook.Close
+    Call testWorkbook.Close(False)
 End Sub
