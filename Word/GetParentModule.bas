@@ -5,23 +5,22 @@ Option Explicit
 Option Private Module
 
 Public Function GetParentDocument(ByVal TargetObject As Object) As Document
-    Select Case TypeName(TargetObject)
-        Case "Document"
-            Set GetParentDocument = TargetObject
-            Exit Function
-        Case "Application"
-            Call Err.Raise(5)
-    End Select
+    If TypeOf TargetObject Is Document Then
+        Set GetParentDocument = TargetObject
+        Exit Function
+    ElseIf TypeOf TargetObject Is Application Then
+        Call Err.Raise(5)
+    End If
     Set GetParentDocument = GetParentDocument(TargetObject.Parent)
 End Function
 
 Public Function GetParentSection(ByVal TargetObject As Object) As Section
-    Select Case TypeName(TargetObject)
-        Case "Section"
-            Set GetParentSection = TargetObject
-            Exit Function
-        Case "Document", "Application"
-            Call Err.Raise(5)
-    End Select
+    If TypeOf TargetObject Is Section Then
+        Set GetParentSection = TargetObject
+        Exit Function
+    ElseIf TypeOf TargetObject Is Document Or _
+            TypeOf TargetObject Is Application Then
+        Call Err.Raise(5)
+    End If
     Set GetParentSection = GetParentSection(TargetObject.Parent)
 End Function

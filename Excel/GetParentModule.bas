@@ -5,23 +5,22 @@ Option Explicit
 Option Private Module
 
 Public Function GetParentWorkbook(ByVal TargetObject As Object) As Workbook
-    Select Case TypeName(TargetObject)
-        Case "Workbook"
-            Set GetParentWorkbook = TargetObject
-            Exit Function
-        Case "Application"
-            Call Err.Raise(5)
-    End Select
+    If TypeOf TargetObject Is Workbook Then
+        Set GetParentWorkbook = TargetObject
+        Exit Function
+    ElseIf TypeOf TargetObject Is Application Then
+        Call Err.Raise(5)
+    End If
     Set GetParentWorkbook = GetParentWorkbook(TargetObject.Parent)
 End Function
 
 Public Function GetParentWorksheet(ByVal TargetObject As Object) As Worksheet
-    Select Case TypeName(TargetObject)
-        Case "Worksheet"
-            Set GetParentWorksheet = TargetObject
-            Exit Function
-        Case "Application", "Workbook"
-            Call Err.Raise(5)
-    End Select
+    If TypeOf TargetObject Is Worksheet Then
+        Set GetParentWorksheet = TargetObject
+        Exit Function
+    ElseIf TypeOf TargetObject Is Workbook Or _
+            TypeOf TargetObject Is Application Then
+        Call Err.Raise(5)
+    End If
     Set GetParentWorksheet = GetParentWorksheet(TargetObject.Parent)
 End Function
