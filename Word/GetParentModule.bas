@@ -4,24 +4,24 @@ Attribute VB_Name = "GetParentModule"
 Option Explicit
 Option Private Module
 
-Public Function GetDocument(ByVal TargetObject As Object) As Document
+Public Function GetParentDocument(ByVal TargetObject As Object) As Document
     Select Case TypeName(TargetObject)
         Case "Document"
-            Set GetDocument = TargetObject
+            Set GetParentDocument = TargetObject
             Exit Function
         Case "Application"
             Call Err.Raise(5)
     End Select
-    Set GetDocument = GetDocument(TargetObject.Parent)
+    Set GetParentDocument = GetParentDocument(TargetObject.Parent)
 End Function
 
-Public Function GetSection(ByVal TargetObject As Object) As Section
+Public Function GetParentSection(ByVal TargetObject As Object) As Section
     Select Case TypeName(TargetObject)
         Case "Section"
-            Set GetSection = TargetObject
+            Set GetParentSection = TargetObject
             Exit Function
         Case "Document", "Application"
             Call Err.Raise(5)
     End Select
-    Set GetSection = GetSection(TargetObject.Parent)
+    Set GetParentSection = GetParentSection(TargetObject.Parent)
 End Function

@@ -4,24 +4,24 @@ Attribute VB_Name = "GetParentModule"
 Option Explicit
 Option Private Module
 
-Public Function GetPresentation(ByVal TargetObject As Object) As Presentation
+Public Function GetParentPresentation(ByVal TargetObject As Object) As Presentation
     Select Case TypeName(TargetObject)
         Case "Presentation"
-            Set GetPresentation = TargetObject
+            Set GetParentPresentation = TargetObject
             Exit Function
         Case "Application"
             Call Err.Raise(5)
     End Select
-    Set GetPresentation = GetPresentation(TargetObject.Parent)
+    Set GetParentPresentation = GetParentPresentation(TargetObject.Parent)
 End Function
 
-Public Function GetSlide(ByVal TargetObject As Object) As Slide
+Public Function GetParentSlide(ByVal TargetObject As Object) As Slide
     Select Case TypeName(TargetObject)
         Case "Slide"
-            Set GetSlide = TargetObject
+            Set GetParentSlide = TargetObject
             Exit Function
         Case "Application", "Presentation"
             Call Err.Raise(5)
     End Select
-    Set GetSlide = GetSlide(TargetObject.Parent)
+    Set GetParentSlide = GetParentSlide(TargetObject.Parent)
 End Function

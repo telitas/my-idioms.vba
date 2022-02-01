@@ -45,7 +45,7 @@ Private Sub TestCleanup()
 End Sub
 
 '@TestMethod("GetParentModule")
-Private Sub GetWorkbook_CorrectCall_Successed()
+Private Sub GetParentWorkbook_CorrectCall_Successed()
     Dim expect As Workbook
     Dim actual As Workbook
     
@@ -53,17 +53,17 @@ Private Sub GetWorkbook_CorrectCall_Successed()
     Set testWorkbook = Workbooks.Add
     
     Set expect = testWorkbook
-    Set actual = GetWorkbook(testWorkbook)
+    Set actual = GetParentWorkbook(testWorkbook)
     Assert.AreSame expect, actual
     
-    Set actual = GetWorkbook(expect.Worksheets(1))
+    Set actual = GetParentWorkbook(expect.Worksheets(1))
     Assert.AreSame expect, actual
     
-    Set actual = GetWorkbook(expect.Worksheets(1).Cells(1, 1))
+    Set actual = GetParentWorkbook(expect.Worksheets(1).Cells(1, 1))
     Assert.AreSame expect, actual
     
     On Error GoTo ERROR_1
-    Call GetWorkbook(Application)
+    Call GetParentWorkbook(Application)
     Assert.Fail
     GoTo FINALLY
     
@@ -77,7 +77,7 @@ FINALLY:
 End Sub
 
 '@TestMethod("GetParentModule")
-Private Sub GetWorksheet_CorrectCall_Successed()
+Private Sub GetParentWorksheet_CorrectCall_Successed()
     Dim expect As Worksheet
     Dim actual As Worksheet
         
@@ -85,14 +85,14 @@ Private Sub GetWorksheet_CorrectCall_Successed()
     Set testWorkbook = Workbooks.Add
     
     Set expect = testWorkbook.Worksheets(1)
-    Set actual = GetWorksheet(expect)
+    Set actual = GetParentWorksheet(expect)
     Assert.AreSame expect, actual
     
-    Set actual = GetWorksheet(expect.Cells(1, 1))
+    Set actual = GetParentWorksheet(expect.Cells(1, 1))
     Assert.AreSame expect, actual
             
     On Error GoTo ERROR_1
-    Call GetWorksheet(Application)
+    Call GetParentWorksheet(Application)
     Assert.Fail
     GoTo FINALLY
     
@@ -102,7 +102,7 @@ ERROR_1:
 RESUME_1:
     
     On Error GoTo ERROR_2
-    Call GetWorksheet(ThisWorkbook)
+    Call GetParentWorksheet(ThisWorkbook)
     Assert.Fail
     GoTo FINALLY
     

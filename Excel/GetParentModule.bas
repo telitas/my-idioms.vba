@@ -4,24 +4,24 @@ Attribute VB_Name = "GetParentModule"
 Option Explicit
 Option Private Module
 
-Public Function GetWorkbook(ByVal TargetObject As Object) As Workbook
+Public Function GetParentWorkbook(ByVal TargetObject As Object) As Workbook
     Select Case TypeName(TargetObject)
         Case "Workbook"
-            Set GetWorkbook = TargetObject
+            Set GetParentWorkbook = TargetObject
             Exit Function
         Case "Application"
             Call Err.Raise(5)
     End Select
-    Set GetWorkbook = GetWorkbook(TargetObject.Parent)
+    Set GetParentWorkbook = GetParentWorkbook(TargetObject.Parent)
 End Function
 
-Public Function GetWorksheet(ByVal TargetObject As Object) As Worksheet
+Public Function GetParentWorksheet(ByVal TargetObject As Object) As Worksheet
     Select Case TypeName(TargetObject)
         Case "Worksheet"
-            Set GetWorksheet = TargetObject
+            Set GetParentWorksheet = TargetObject
             Exit Function
         Case "Application", "Workbook"
             Call Err.Raise(5)
     End Select
-    Set GetWorksheet = GetWorksheet(TargetObject.Parent)
+    Set GetParentWorksheet = GetParentWorksheet(TargetObject.Parent)
 End Function

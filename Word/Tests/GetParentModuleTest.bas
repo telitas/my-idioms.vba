@@ -45,7 +45,7 @@ Private Sub TestCleanup()
 End Sub
 
 '@TestMethod("GetParentModule")
-Private Sub GetDocument_CorrectCall_Successed()
+Private Sub GetParentDocument_CorrectCall_Successed()
     Dim expect As Document
     Dim actual As Document
     
@@ -53,17 +53,17 @@ Private Sub GetDocument_CorrectCall_Successed()
     Set testDocument = Documents.Add
     
     Set expect = testDocument
-    Set actual = GetDocument(testDocument)
+    Set actual = GetParentDocument(testDocument)
     Assert.AreSame expect, actual
     
-    Set actual = GetDocument(expect.Sections(1))
+    Set actual = GetParentDocument(expect.Sections(1))
     Assert.AreSame expect, actual
     
-    Set actual = GetDocument(expect.Sections(1).Range)
+    Set actual = GetParentDocument(expect.Sections(1).Range)
     Assert.AreSame expect, actual
     
     On Error GoTo ERROR_1
-    Call GetDocument(Application)
+    Call GetParentDocument(Application)
     Assert.Fail
     GoTo FINALLY
     
@@ -77,7 +77,7 @@ FINALLY:
 End Sub
 
 '@TestMethod("GetParentModule")
-Private Sub GetSection_CorrectCall_Successed()
+Private Sub GetParentSection_CorrectCall_Successed()
     Dim expect As Section
     Dim actual As Section
     
@@ -85,17 +85,17 @@ Private Sub GetSection_CorrectCall_Successed()
     Set testDocument = Documents.Add
     
     Set expect = testDocument.Sections(1)
-    Set actual = GetSection(expect)
+    Set actual = GetParentSection(expect)
     Assert.AreEqual expect.Index, actual.Index
     
-    Set actual = GetSection(expect)
+    Set actual = GetParentSection(expect)
     Assert.AreEqual expect.Index, actual.Index
     
-    Set actual = GetSection(expect.Headers(wdHeaderFooterPrimary))
+    Set actual = GetParentSection(expect.Headers(wdHeaderFooterPrimary))
     Assert.AreEqual expect.Index, actual.Index
         
     On Error GoTo ERROR_1
-    Call GetSection(Application)
+    Call GetParentSection(Application)
     Assert.Fail
     GoTo FINALLY
     
@@ -105,7 +105,7 @@ ERROR_1:
 RESUME_1:
     
     On Error GoTo ERROR_2
-    Call GetSection(testDocument)
+    Call GetParentSection(testDocument)
     Assert.Fail
     GoTo FINALLY
     

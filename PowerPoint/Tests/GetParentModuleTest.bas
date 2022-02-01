@@ -39,7 +39,7 @@ Private Sub TestCleanup()
 End Sub
 
 '@TestMethod("GetParentModule")
-Private Sub GetPresentation_CorrectCall_Successed()
+Private Sub GetParentPresentation_CorrectCall_Successed()
     Dim expect As Presentation
     Dim actual As Presentation
     
@@ -49,17 +49,17 @@ Private Sub GetPresentation_CorrectCall_Successed()
     Call testPresentation.Slides.AddSlide(1, testPresentation.SlideMaster.CustomLayouts(7))
     
     Set expect = testPresentation
-    Set actual = GetPresentation(expect)
+    Set actual = GetParentPresentation(expect)
     Assert.AreSame expect, actual
     
-    Set actual = GetPresentation(expect.Slides(1))
+    Set actual = GetParentPresentation(expect.Slides(1))
     Assert.AreSame expect, actual
     
-    Set actual = GetPresentation(expect.Slides(1).Shapes.AddShape(msoShapeRectangle, 0, 0, 1, 1))
+    Set actual = GetParentPresentation(expect.Slides(1).Shapes.AddShape(msoShapeRectangle, 0, 0, 1, 1))
     Assert.AreSame expect, actual
     
     On Error GoTo ERROR_1
-    Call GetPresentation(Application)
+    Call GetParentPresentation(Application)
     Assert.Fail
     GoTo FINALLY
     
@@ -73,7 +73,7 @@ FINALLY:
 End Sub
 
 '@TestMethod("GetParentModule")
-Private Sub GetSlide_CorrectCall_Successed()
+Private Sub GetParentSlide_CorrectCall_Successed()
     Dim expect As Slide
     Dim actual As Slide
     
@@ -81,14 +81,14 @@ Private Sub GetSlide_CorrectCall_Successed()
     Set testPresentation = Presentations.Add
     
     Set expect = testPresentation.Slides.AddSlide(1, testPresentation.SlideMaster.CustomLayouts(7))
-    Set actual = GetSlide(expect)
+    Set actual = GetParentSlide(expect)
     Assert.AreSame expect, actual
     
-    Set actual = GetSlide(expect.Shapes.AddShape(msoShapeRectangle, 0, 0, 1, 1))
+    Set actual = GetParentSlide(expect.Shapes.AddShape(msoShapeRectangle, 0, 0, 1, 1))
     Assert.AreSame expect, actual
             
     On Error GoTo ERROR_1
-    Call GetSlide(Application)
+    Call GetParentSlide(Application)
     Assert.Fail
     GoTo FINALLY
     
@@ -98,7 +98,7 @@ ERROR_1:
 RESUME_1:
     
     On Error GoTo ERROR_2
-    Call GetSlide(testPresentation)
+    Call GetParentSlide(testPresentation)
     Assert.Fail
     GoTo FINALLY
     
