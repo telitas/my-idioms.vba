@@ -1,8 +1,8 @@
 Attribute VB_Name = "PerformanceSettingModule"
 ' This file is released under the CC0 1.0 Universal License.
 ' See the LICENSE.txt file or https://creativecommons.org/publicdomain/zero/1.0/ for details.
-Option Explicit
 Option Private Module
+Option Explicit
 
 Public Function ApplyPerformanceSetting( _
     Optional ByVal Calculation As Variant, _
